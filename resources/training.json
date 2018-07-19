@@ -1,0 +1,208 @@
+{
+  "how_skill": {
+    "topic": "how_are_you",
+    "action": "howAction",
+    "training": {
+      "how_are_you": [
+        "how are you",
+        "how are you going",
+        "how is it going"
+      ]
+    }
+  },
+
+  "help_skill": {
+    "topic": "help",
+    "action": "helpAction",
+    "training": {
+      "help": [
+        "how can you help",
+        "i need some help",
+        "how could you assist me",
+        "what can you do",
+        "what skills do you have"
+      ]
+    }
+  },
+
+  "alerts_skill": {
+    "topic": "all_alerts",
+    "action": "alertsAction",
+    "training": {
+      "all_alerts": [
+        "list all alerts",
+        "show all alerts",
+        "show me all alerts",
+        "list all alerts for me"
+      ]
+    }
+  },
+
+  "open_pod_doors_skill": {
+    "topic": "open_pod_doors",
+    "action": "openDoorsAction",
+    "training": {
+      "open_pod_doors": [
+        "open the pod bay doors",
+        "open the bay doors",
+        "open the pod doors",
+        "open pod bay doors",
+        "open pod doors",
+        "open bay doors"
+      ]
+    }
+  },
+
+  "friends_skill": {
+    "topic": "best_friends",
+    "action": "friendsAction",
+    "training": {
+      "best_friends": [
+        "who are your best friends",
+        "who is your best friend",
+        "who are your friends",
+        "who is your friend",
+        "who are your best friends?",
+        "who is your best friend?",
+        "who are your friends?",
+        "who is your friend?"
+      ]
+    }
+  },
+
+  "all_integrations": {
+    "topic": "installed_integrations",
+    "action": "listInstalledIntegrationsAction",
+    "training": {
+      "all_integrations": [
+        "list all integrations"
+      ]
+    }
+  },
+
+  "installed_integrations": {
+    "topic": "all_integrations",
+    "action": "listAllIntegrationsAction",
+    "training": {
+      "installed_integrations": [
+        "list all installed integrations"
+      ]
+    }
+  },
+
+  "all_dashboards_skill": {
+    "topic": "all_dashboards",
+    "action": "listAllDashboardsAction",
+    "training": {
+      "all_dashboards": [
+        "list all dashboards"
+      ]
+    }
+  },
+
+  "alerts_for_skill": {
+    "topic": "alerts_for",
+    "action": "listAlertsFor",
+    "training": {
+      "alerts_for": [
+        "show all alerts for",
+        "display all alerts for",
+        "list all alerts for",
+        "show alerts for",
+        "display alerts for",
+        "list alerts for"
+      ]
+    }
+  },
+
+  "severe_alerts_skill": {
+    "topic": "severe_alerts",
+    "action": "listSevereAlerts",
+    "training": {
+      "severe_alerts": [
+        "list severe alerts",
+        "show severe alerts",
+        "show me severe alerts",
+        "display severe alerts",
+        "list all severe alerts",
+        "show all severe alerts",
+        "show me all severe alerts",
+        "display all severe alerts"
+      ]
+    }
+  },
+
+  "warn_alerts_skill": {
+    "topic": "warn_alerts",
+    "action": "listWarningAlerts",
+    "training": {
+      "warn_alerts": [
+        "list warning alerts",
+        "show warning alerts",
+        "show me warning alerts",
+        "display warning alerts",
+        "list all warning alerts",
+        "show all warning alerts",
+        "show me all warning alerts",
+        "display all warning alerts"
+      ]
+    }
+  },
+
+  "info_alerts_skill": {
+    "topic": "info_alerts",
+    "action": "listInfoAlerts",
+    "training": {
+      "info_alerts": [
+        "list info alerts",
+        "show info alerts",
+        "show me info alerts",
+        "display info alerts",
+        "list all info alerts",
+        "show all info alerts",
+        "show me all info alerts",
+        "display all info alerts"
+      ]
+    }
+  },
+
+  "smoke_alerts_skill": {
+    "topic": "smoke_alerts",
+    "action": "listSmokeAlerts",
+    "training": {
+      "smoke_alerts": [
+        "list smoke alerts",
+        "show smoke alerts",
+        "show me smoke alerts",
+        "display smoke alerts",
+        "list all smoke alerts",
+        "show all smoke alerts",
+        "show me all smoke alerts",
+        "display all smoke alerts"
+      ]
+    }
+  },
+
+  "snooze_alert_skill": {
+    "topic": "snooze_alert",
+    "action": "snoozeAlert",
+    "training": {
+      "snooze_alert": [
+        "snooze alert"
+      ]
+    }
+  },
+
+  "joke_skill": {
+    "topic": "tell_joke",
+    "action": "jokeAction",
+    "training": {
+      "tell_joke": [
+        "tell me a joke",
+        "make me laugh",
+        "tell a joke",
+        "tell me something funny"
+      ]
+    }
+  }
+}
