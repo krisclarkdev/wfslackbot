@@ -10,10 +10,6 @@ let nlp = require('./NLP.js');
 
 let slack_oauth = process.env.SLACK_OAUTH;
 
-console.log('!!!!!!!!!!!!!');
-console.log(slack_oauth);
-console.log('!!!!!!!!!!!!!');
-
 const rtm = new RTMClient(slack_oauth);
 const web = new WebClient(slack_oauth);
 

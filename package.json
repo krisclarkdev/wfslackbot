@@ -23,7 +23,6 @@
     "natural": "^0.5.6",
     "node-fetch": "^2.1.2",
     "request": "^2.85.0",
-    "talkify": "^2.2.0",
-    "watson-developer-cloud": "^3.4.1"
+    "talkify": "^2.2.0"
   }
 }
