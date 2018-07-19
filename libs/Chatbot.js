@@ -8,7 +8,9 @@ const { WebClient } = require('@slack/client');
 let triggers = ['wf-slackbot'];
 let nlp = require('./NLP.js');
 
-const rtm = new RTMClient(process.env.SLACK_OAUTH);
+let slack_oauth = process.env.SLACK_OAUTH;
+
+const rtm = new RTMClient(slack_oauth);
 const web = new WebClient(slack_oauth);
 
 exports.Chatbot = class {
