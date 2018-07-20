@@ -74,7 +74,7 @@ let getAlertIDs = function(data) {
 };
 
 let test = function(severity, filter, response, next) {
-    console.log(filter);
+    console.log(')))');
     wf.getAlerts().then(function(data) {
         let results = new Array();
 
@@ -143,6 +143,7 @@ exports.actions = {
         next();
     },
     alertsAction: function(context, request, response, next) {
+        console.log('&&&');
         test(null, null, response, next);
     },
     friendsAction: function(context, request, response, next) {
@@ -222,22 +223,28 @@ exports.actions = {
     },
     listAlertsFor: function(context, request, response, next) {
         let Z = request.message.content.slice(request.message.content.indexOf('for') + 'for'.length+1);
-        console.log(Z);
+        //console.log(Z);
+        console.log('!!!');
         test(null, Z, response, next);
     },
     listSevereAlerts: function(context, request, response, next) {
+        console.log('###');
         test('SEVERE', null, response, next);
     },
     listWarningAlerts: function(context, request, response, next) {
+        console.log('@@@');
         test('WARN', null, response, next);
     },
     listInfoAlerts: function(context, request, response, next) {
+        console.log('$$$');
         test('INFO', null, response, next);
     },
     listSmokeAlerts: function(context, request, response, next) {
+        console.log('%%%');
         test('SMOKE', null, response, next);
     },
     snoozeAlert: function(context, request, response, next) {
+        console.log('^^^');
         let splitted = request.sentence.current.split(/\s+/);
 
         response.message = new SingleLineMessage('Snoozing alert ' + splitted[splitted.length-1]);

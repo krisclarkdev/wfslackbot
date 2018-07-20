@@ -21,6 +21,7 @@ module.exports.doPost = function(url) {
             if (err) {
                 reject(err);
             } else {
+                //console.log(body);
                 resolve(JSON.parse(body));
             }
         })

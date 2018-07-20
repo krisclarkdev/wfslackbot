@@ -32,8 +32,7 @@
       "all_alerts": [
         "list all alerts",
         "show all alerts",
-        "show me all alerts",
-        "list all alerts for me"
+        "show me all alerts"
       ]
     }
   },
