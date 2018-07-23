@@ -25,18 +25,6 @@
     }
   },
 
-  "alerts_skill": {
-    "topic": "all_alerts",
-    "action": "alertsAction",
-    "training": {
-      "all_alerts": [
-        "list all alerts",
-        "show all alerts",
-        "show me all alerts"
-      ]
-    }
-  },
-
   "open_pod_doors_skill": {
     "topic": "open_pod_doors",
     "action": "openDoorsAction",
@@ -99,26 +87,17 @@
     }
   },
 
-  "alerts_for_skill": {
-    "topic": "alerts_for",
-    "action": "listAlertsFor",
+  "test_skill": {
+    "topic": "test_alerts",
+    "action": "listAlerts",
     "training": {
-      "alerts_for": [
+      "test_alerts": [
         "show all alerts for",
         "display all alerts for",
         "list all alerts for",
         "show alerts for",
         "display alerts for",
-        "list alerts for"
-      ]
-    }
-  },
-
-  "severe_alerts_skill": {
-    "topic": "severe_alerts",
-    "action": "listSevereAlerts",
-    "training": {
-      "severe_alerts": [
+        "list alerts for",
         "list severe alerts",
         "show severe alerts",
         "show me severe alerts",
@@ -126,16 +105,7 @@
         "list all severe alerts",
         "show all severe alerts",
         "show me all severe alerts",
-        "display all severe alerts"
-      ]
-    }
-  },
-
-  "warn_alerts_skill": {
-    "topic": "warn_alerts",
-    "action": "listWarningAlerts",
-    "training": {
-      "warn_alerts": [
+        "display all severe alerts",
         "list warning alerts",
         "show warning alerts",
         "show me warning alerts",
@@ -143,16 +113,7 @@
         "list all warning alerts",
         "show all warning alerts",
         "show me all warning alerts",
-        "display all warning alerts"
-      ]
-    }
-  },
-
-  "info_alerts_skill": {
-    "topic": "info_alerts",
-    "action": "listInfoAlerts",
-    "training": {
-      "info_alerts": [
+        "display all warning alerts",
         "list info alerts",
         "show info alerts",
         "show me info alerts",
@@ -160,16 +121,7 @@
         "list all info alerts",
         "show all info alerts",
         "show me all info alerts",
-        "display all info alerts"
-      ]
-    }
-  },
-
-  "smoke_alerts_skill": {
-    "topic": "smoke_alerts",
-    "action": "listSmokeAlerts",
-    "training": {
-      "smoke_alerts": [
+        "display all info alerts",
         "list smoke alerts",
         "show smoke alerts",
         "show me smoke alerts",
@@ -177,7 +129,10 @@
         "list all smoke alerts",
         "show all smoke alerts",
         "show me all smoke alerts",
-        "display all smoke alerts"
+        "display all smoke alerts",
+        "list all alerts",
+        "show all alerts",
+        "show me all alerts"
       ]
     }
   },

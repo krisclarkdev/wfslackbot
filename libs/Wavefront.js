@@ -10,7 +10,7 @@ exports.getAlertsCount = function() {
 };
 
 exports.getAlerts = function() {
-    return rest.doPost(endpoints.getEndpointURL.alerts());
+    return rest.doPost(endpoints.getEndpointURL.alerts() + '?offset=0&limit=100');
 };
 
 exports.getAlertById = function(id) {

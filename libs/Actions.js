@@ -73,8 +73,7 @@ let getAlertIDs = function(data) {
     //return pa;
 };
 
-let test = function(severity, filter, response, next) {
-    console.log(')))');
+let getAlertsAndReply = function(severity, filter, response, next) {
     wf.getAlerts().then(function(data) {
         let results = new Array();
 
@@ -83,14 +82,14 @@ let test = function(severity, filter, response, next) {
                 if(data.response.items[i].severity == severity) {
                     if(severity == 'WARN') {
                         try {
-                            let a = '<' + data.response.items[i].event.annotations.details.match(/<a\s+(?:[^>]*?\s+)?href='([^"]*)'/)[1] + '|' + data.response.items[i].name + '> - ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
+                            let a = '<' + data.response.items[i].event.annotations.details.match(/<a\s+(?:[^>]*?\s+)?href='([^"]*)'/)[1] + '|' + data.response.items[i].name + '> - ' + data.response.items[i].status.toString() + ' ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
                             results.push(a.replace('try', 'cs'));
                         }catch(err1){
-
+                            console.log(data.response.items[i].name);
                         }
 
                     }else{
-                        let a = '<' + data.response.items[i].event.annotations.details.match(re)[1] + '|' + data.response.items[i].name + '> - ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
+                        let a = '<' + data.response.items[i].event.annotations.details.match(re)[1] + '|' + data.response.items[i].name + '> - ' + data.response.items[i].status.toString() + ' ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
                         results.push(a.replace('try', 'cs'));
                     }
                 }
@@ -100,9 +99,11 @@ let test = function(severity, filter, response, next) {
                     results.push(a.replace('try', 'cs'));
                 }catch(err1){
                     try {
-                        let a = '<' + data.response.items[i].event.annotations.details.match(/<a\s+(?:[^>]*?\s+)?href='([^"]*)'/)[1] + '|' + data.response.items[i].name + '> - ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
+                        let a = '<' + data.response.items[i].event.annotations.details.match(/<a\s+(?:[^>]*?\s+)?href='([^"]*)'/)[1] + '|' + data.response.items[i].name + '> - ' + data.response.items[i].status.toString() + ' ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
                         results.push(a.replace('try', 'cs'));
-                    }catch(err3){}
+                    }catch(err3){
+                        results.push(data.response.items[i].name + ' - ' + data.response.items[i].status.toString());
+                    }
                 }
             }
         }
@@ -144,7 +145,7 @@ exports.actions = {
     },
     alertsAction: function(context, request, response, next) {
         console.log('&&&');
-        test(null, null, response, next);
+        getAlertsAndReply(null, null, response, next);
     },
     friendsAction: function(context, request, response, next) {
         response.message = new SingleLineMessage('My best friends are Connor Jay and Molly Anne');
@@ -221,27 +222,47 @@ exports.actions = {
             next();
         });
     },
-    listAlertsFor: function(context, request, response, next) {
-        let Z = request.message.content.slice(request.message.content.indexOf('for') + 'for'.length+1);
-        //console.log(Z);
-        console.log('!!!');
-        test(null, Z, response, next);
-    },
-    listSevereAlerts: function(context, request, response, next) {
-        console.log('###');
-        test('SEVERE', null, response, next);
-    },
-    listWarningAlerts: function(context, request, response, next) {
-        console.log('@@@');
-        test('WARN', null, response, next);
-    },
-    listInfoAlerts: function(context, request, response, next) {
-        console.log('$$$');
-        test('INFO', null, response, next);
-    },
-    listSmokeAlerts: function(context, request, response, next) {
-        console.log('%%%');
-        test('SMOKE', null, response, next);
+    listAlerts: function(context, request, response, next) {
+        let content = '';
+        content += request.message.content;
+
+        if(content.includes('info')) {
+            if(content.includes('for')) {
+                let Z = request.message.content.slice(request.message.content.indexOf('for') + 'for'.length+1);
+                getAlertsAndReply('INFO', Z, response, next);
+            }else{
+                getAlertsAndReply('INFO', null, response, next);
+            }
+        }else if(content.includes('smoke')) {
+            if (content.includes('for')) {
+                let Z = request.message.content.slice(request.message.content.indexOf('for') + 'for'.length+1);
+                getAlertsAndReply('SMOKE', Z, response, next);
+            } else {
+                getAlertsAndReply('SMOKE', null, response, next);
+            }
+        }else if(content.includes('warning')) {
+            if (content.includes('for')) {
+                let Z = request.message.content.slice(request.message.content.indexOf('for') + 'for'.length+1);
+                getAlertsAndReply('WARN', Z, response, next);
+            } else {
+                getAlertsAndReply('WARN', null, response, next);
+            }
+        }else if(content.includes('severe')) {
+            if(content.includes('for')) {
+                let Z = request.message.content.slice(request.message.content.indexOf('for') + 'for'.length+1);
+                getAlertsAndReply('SEVERE', Z, response, next);
+            }else{
+                getAlertsAndReply('SEVERE', null, response, next);
+            }
+        }
+
+        if(content.includes('all') && !content.includes('for')) {
+            let Z = request.message.content.slice(request.message.content.indexOf('for') + 'for'.length+1);
+            getAlertsAndReply(null, null, response, next);
+        }else if(content.includes('all') && content.includes('for')) {
+            let Z = request.message.content.slice(request.message.content.indexOf('for') + 'for'.length+1);
+            getAlertsAndReply(null, Z, response, next);
+        }
     },
     snoozeAlert: function(context, request, response, next) {
         console.log('^^^');
