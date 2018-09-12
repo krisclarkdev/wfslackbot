@@ -18,7 +18,17 @@ node index.js
 
 # Commands
 
-* TODO
+The Wavefront Slackbot can be used to query a number of different data points out of the system.  The following are valid commands that can be issued
+
+* wfbot list all alerts
+* wfbot list all smoke alerts
+* wfbot list all warning alerts
+* wfbot list all severe alerts
+* wfbot list all alerts for XYZ (Where XYZ is a string in the alert, e.g. Kubernetes)
+* wfbot list all smoke alerts for XYZ (Where XYZ is a string in the alert, e.g. Kubernetes)
+* wfbot list all warning alerts for XYZ (Where XYZ is a string in the alert, e.g. Kubernetes)
+* wfbot list all severe alerts for XYZ (Where XYZ is a string in the alert, e.g. Kubernetes)
+* wfbot tell me a joke
 
 # Adding a skill to the code
 
