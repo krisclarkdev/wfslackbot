@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wavefront
+  namespace: slackbots
+  labels:
+    purpose: wavefront
+spec:
+  containers:
+  - name: wfslackbot
+    image: krisclarkdev/wfslackbot:beta
+    env:
+    - name: SLACK_OAUTH
+      value: "<<YOUR SLACK OAUTH TOKEN>>"
+    - name: WAVEFRONT_TOKEN
+      value: "<<YOUR WAVEFRONT TOKEN>>"
+    - name: WAVEFRONT_URL
+      value: "<<YOUR_URL>>"
