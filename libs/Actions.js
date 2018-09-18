@@ -17,6 +17,8 @@ let wf = require('./Wavefront');
 let re = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"/;
 let re2 = /<a\s+(?:[^>]*?\s+)?href='([^']*)"/;
 
+const rest = require('./Rest');
+
 Array.prototype.findFirstSubstring = function(s) {
     for(let i = 0; i < this.length;i++)
     {
@@ -146,11 +148,11 @@ let getAlertsAndReply = function(severity, filter, response, next) {
 
 exports.actions = {
     howAction: function(context, request, response, next) {
-        response.message = new SingleLineMessage('You asked: \"' + request.message.content + '\". I\'m doing well. Thanks for asking.');
-        next();
+        //response.message = new SingleLineMessage('You asked: \"' + request.message.content + '\". I\'m doing well. Thanks for asking.');
+        //next();
     },
     helpAction: function(context, request, response, next) {
-        response.message = new SingleLineMessage('You asked: \"' + request.message.content + '\". I can tell you how I\'m doing if you ask nicely.');
+        response.message = new SingleLineMessage('Implement help here');
         next();
     },
     alertsAction: function(context, request, response, next) {
