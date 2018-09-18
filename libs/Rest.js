@@ -2,6 +2,8 @@
 
 'use strict';
 
+console.log('$$$$');
+console.log(process.env.WAVEFRONT_TOKEN);
 let wavefront_key = process.env.WAVEFRONT_TOKEN;
 
 const Request = require('request');

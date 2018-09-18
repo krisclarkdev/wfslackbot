@@ -13,7 +13,6 @@ const SingleLineMessage = BotTypes.SingleLineMessage;
 const TrainingDocument = BotTypes.TrainingDocument;
 
 let wf = require('./Wavefront');
-let rest = require('./Rest');
 
 let re = /<a\s+(?:[^>]*?\s+)?href="([^"]*)"/;
 let re2 = /<a\s+(?:[^>]*?\s+)?href='([^']*)"/;
@@ -78,31 +77,42 @@ let getAlertsAndReply = function(severity, filter, response, next) {
         let results = new Array();
 
         for(let i=0; i<data.response.items.length; i++) {
+
             if(severity != null) {
                 if(data.response.items[i].severity == severity) {
                     if(severity == 'WARN') {
                         try {
-                            let a = '<' + data.response.items[i].event.annotations.details.match(/<a\s+(?:[^>]*?\s+)?href='([^"]*)'/)[1] + '|' + data.response.items[i].name + '> - ' + data.response.items[i].status.toString() + ' ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
-                            results.push(a.replace('try', 'cs'));
+                            if(data.response.items[i].status.toString().includes('CHECKING')) {
+                                let a = '<' + data.response.items[i].event.annotations.details.match(/<a\s+(?:[^>]*?\s+)?href='([^"]*)'/)[1] + '|' + data.response.items[i].name + '> - ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
+                                results.push(a.replace('try', 'cs'));
+                            }
                         }catch(err1){
-                            console.log(data.response.items[i].name);
+                            //console.log(data.response.items[i].name);
                         }
 
                     }else{
-                        let a = '<' + data.response.items[i].event.annotations.details.match(re)[1] + '|' + data.response.items[i].name + '> - ' + data.response.items[i].status.toString() + ' ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
-                        results.push(a.replace('try', 'cs'));
+                        if(data.response.items[i].status.toString().includes('CHECKING')) {
+                            let a = '<' + data.response.items[i].event.annotations.details.match(re)[1] + '|' + data.response.items[i].name + '> - ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
+                            results.push(a.replace('try', 'cs'));
+                        }
                     }
                 }
             }else{
                 try {
-                    let a = '<' + data.response.items[i].event.annotations.details.match(re)[1] + '|' + data.response.items[i].name + '> - ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
-                    results.push(a.replace('try', 'cs'));
+                    console.log(data.response.items[i].status.toString());
+
+                    if(data.response.items[i].status.toString().includes('CHECKING')) {
+                        let a = '<' + data.response.items[i].event.annotations.details.match(re)[1] + '|' + data.response.items[i].name + '> - ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
+                        results.push(a.replace('try', 'cs'));
+                    }
                 }catch(err1){
                     try {
-                        let a = '<' + data.response.items[i].event.annotations.details.match(/<a\s+(?:[^>]*?\s+)?href='([^"]*)'/)[1] + '|' + data.response.items[i].name + '> - ' + data.response.items[i].status.toString() + ' ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
-                        results.push(a.replace('try', 'cs'));
+                        if(data.response.items[i].status.toString().includes('CHECKING')) {
+                            let a = '<' + data.response.items[i].event.annotations.details.match(/<a\s+(?:[^>]*?\s+)?href='([^"]*)'/)[1] + '|' + data.response.items[i].name + '> - ' + '(<https://cs.wavefront.com/alerts/' + data.response.items[i].id + '/edit|' + 'Edit' + '>)';
+                            results.push(a.replace('try', 'cs'));
+                        }
                     }catch(err3){
-                        results.push(data.response.items[i].name + ' - ' + data.response.items[i].status.toString());
+                        //results.push(data.response.items[i].name + ' - ' + data.response.items[i].status.toString());
                     }
                 }
             }
