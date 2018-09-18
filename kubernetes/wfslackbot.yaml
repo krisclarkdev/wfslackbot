@@ -15,6 +15,7 @@ spec:
       containers:
       - name: wfslackbot
         image: krisclarkdev/wfslackbot:beta
+        imagePullPolicy: Always
         env:
         - name: SLACK_OAUTH
           value: "<<YOUR_SLACK_OAUTH_TOKEN>>"
